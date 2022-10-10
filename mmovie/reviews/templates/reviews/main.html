@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <div class="container text-center">
+    <h1>MAIN</h1>
+    <embed src="https://t1.daumcdn.net/news/202106/11/fmkorea/20210611143117437maii.gif">
+    <p class="my-2">
+      <a class="btn btn-outline-secondary" href="{% url 'reviews:create' %}">글 쓰러 떠나장✏</a>
+    </p>
+  </div>
+{% endblock %}

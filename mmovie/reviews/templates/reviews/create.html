@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="container my-3">
+      {% bootstrap_form movieform %}
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-outline-secondary">내맘속에저장-✨</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

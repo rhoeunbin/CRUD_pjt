@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <div class="card">
+    <div class="card-body">
+      <h3>Review Info</h3>
+      <p>리뷰 제목:{{ content.title }}</p>
+      <p>리뷰 내용:{{ content.content }}</p>
+      <p>영화 이름:{{ content.movie_name }}</p>
+      <p>영화 평점:{{ content.grade }}</p>
+
+      <a class="btn btn-outline-primary" href="{% url 'reviews:update' content.pk %}">수정</a>
+
+      <a class="btn btn-outline-danger" href="{% url 'reviews:delete' content.pk %}">삭제</a>
+
+    </div>
+  </div>
+{% endblock %}
+
+<button type="submit" class="btn btn-primary">저장하기</button>

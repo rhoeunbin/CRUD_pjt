@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <div class="container my-2">
+    <h1 class="text-center">Review</h1>
+
+    <table class="table text-center ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Review Title</th>
+          <th scope="col">Movie Name</th>
+          <th scope="col">Rate</th>
+        </tr>
+      </thead>
+      {% for content in contents %}
+        <tbody>
+          <tr>
+            <th scope="row">{{ content.pk }}</th>
+            <td>
+              <a href="{% url 'reviews:info' content.pk %}">{{ content.title }}</a>
+            </td>
+            <td>{{ content.movie_name }}</td>
+            <td>{{ content.grade }}</td>
+          </tr>
+        </tbody>
+        {% endfor%}
+      </table>
+      <a class="btn btn-outline-secondary" href="{% url 'reviews:create' %}">글 쓰러 떠나장✏</a>
+    </div>
+
+  {% endblock %}
