@@ -25,19 +25,22 @@ def signup(request):
     return render(request, 'accounts/signup.html', context)
 
 def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+    if request.user.is_anonymous:
+        if request.method == 'POST':
+            form = AuthenticationForm(request, data=request.POST)
 
-        if form.is_valid():
-            auth_login(request, form.get_user())
-            return redirect('accounts:main')
+            if form.is_valid():
+                auth_login(request, form.get_user())
+                return redirect('accounts:main')
+        else:
+            form = AuthenticationForm()
+
+        context = {
+            'form': form
+        }
+        return render(request, 'accounts/login.html', context)
     else:
-        form = AuthenticationForm()
-
-    context = {
-        'form': form
-    }
-    return render(request, 'accounts/login.html', context)
+        return redirect('accounts:index')
 
 def logout(request):
     auth_logout(request)

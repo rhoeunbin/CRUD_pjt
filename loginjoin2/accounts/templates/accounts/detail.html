@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% block content %}
 {% load django_bootstrap5 %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
-  
-{% block body %}
-<h1>{{ user.username }}님의 프로필</h1>
-{% endblock body %}
+  <div class="contatiner text-center">
+    <h1>{{ user.username }}님의 프로필</h1>
+    <embed src="https://mblogthumb-phinf.pstatic.net/20160626_147/dls3504_1466944166842JCCjm_GIF/15_-_1.gif?type=w2">
+  </div>
+{% endblock content %}
