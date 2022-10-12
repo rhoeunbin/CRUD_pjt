@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <div class="container text-center">
+    <embed src="https://mblogthumb-phinf.pstatic.net/20150717_95/dlwltn0824_14371404387332hfme_GIF/tumblr_niwdbyN9hL1t33d6lo1_500.gif?type=w2">
+    <p class="my-2">
+    <a class="btn btn-outline-primary" href="{% url 'accounts:signup' %}">회원 가입</a>
+    <a class="btn btn-outline-danger" href="{% url 'accounts:index' %}">회원 목록</a>
+    </p>
+  </div>
+{% endblock %}
