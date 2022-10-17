@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %} 
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+  <Style>
+    body {font-family: 'Single Day', cursive; }
+  </style>
+<div class="container">
+  <h1>글 써보러 가시렵니까?</h1>
+  {% if request.user.is_authenticated %}
+      <a class="btn btn-outline-secondary my-3 float-right" href="{% url 'articles:create' %}">글 쓰기</a>
+  {% endif %}
+
+  <div class="row">
+    {% for article in articles %}
+    <div class="col-4">
+      <div class="card">
+        <img src="{{ article.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ article.title }}</h5>
+          <a href="{% url 'articles:detail' article.pk %}" class="btn btn-outline-secondary my-3">글 내용</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

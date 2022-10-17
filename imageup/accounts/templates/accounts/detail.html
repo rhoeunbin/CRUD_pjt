@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <Style>
+    body {font-family: 'Single Day', cursive; }
+    </style>
+  <div class="contatiner text-center my-3">
+    <h1>{{ user.username }}님의 프로필</h1>
+    <embed src="https://mblogthumb-phinf.pstatic.net/20160626_147/dls3504_1466944166842JCCjm_GIF/15_-_1.gif?type=w2">
+    <p><a class="btn btn-outline-danger" href="{%  url 'accounts:delete' %}">탈퇴</a></p>
+  </div>
+{% endblock content %}
