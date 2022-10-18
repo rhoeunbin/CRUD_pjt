@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Article
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 
 # Create your views here.
 
@@ -16,6 +16,7 @@ def index(request):
 @login_required
 def create(request):
     if request.method == 'POST':
+        # 이미지 파일 추가하기 위해 수정
         article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article_form.save()
@@ -48,7 +49,19 @@ def update(request, pk):
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
+    comment_form = CommentForm()
     context = {
-        'article': article
+        'article': article,
+        'comments': article.comment_set.all(),
+        'comment_form' : comment_form,
     }
     return render(request, 'articles/detail.html', context)
+
+def comment_create(request,pk):
+    article = Article.objects.get(pk=pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.article = article
+        comment.save()
+    return redirect('articles:detail', article.pk)
