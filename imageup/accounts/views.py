@@ -117,4 +117,4 @@ def change_password(request):
 def delete(request):
     request.user.delete() # 선 탈퇴
     auth_logout(request)  # 후 로그아웃
-    return redirect('index')
+    return redirect('articles:index')
