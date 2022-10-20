@@ -1,0 +1,22 @@
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+  {% bootstrap_javascript %} 
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+  <Style>
+  body {font-family: 'Single Day', cursive; }
+  </style>
+  <div class='container'>
+      <h1 class=text-center>LOGIN</h1>
+      <form action="{% url 'accounts:login' %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type="submit" content="OK" %}
+      </form>
+      <a class="btn btn-outline-danger" href="{% url 'accounts:signup' %}" role="button">signup</a>
+  </div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+  {% bootstrap_javascript %} 
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
+  <div class="container">
+    <h1 class="text-center">회원가입</h1>
+    <form action='' method='POST'>
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% bootstrap_button button_type="submit" content="OK" %}
+    </form>
+    <a class="btn btn-outline-dark" href="{% url 'accounts:login' %}" role="button">Login</a>
+  </div>
+
+{% endblock %}
